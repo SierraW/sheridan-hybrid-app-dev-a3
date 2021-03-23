@@ -4,12 +4,20 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'school-covid19-data',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'ongoing-outbreak',
+    loadChildren: () => import('./ongoing-outbreak/ongoing-outbreak.module').then( m => m.OngoingOutbreakPageModule)
+  },
+  {
+    path: 'public-health-unit',
+    loadChildren: () => import('./public-health-unit/public-health-unit.module').then( m => m.PublicHealthUnitPageModule)
+  },
+  {
+    path: 'school-covid19-data',
+    loadChildren: () => import('./school-covid19-data/school-covid19-data.module').then( m => m.SchoolCovid19DataPageModule)
   }
 ];
 

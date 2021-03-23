@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>School COVID-19 Data</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button color="primary" (click)="displaySchoolCovidSummary()">Summary of Cases in schools</ion-button>
+  <ion-card *ngFor="let item of schoolCovidSummary">
+    <ion-card-header>
+      <ion-card-title>{{item.current_schools_w_cases}}</ion-card-title>
+      <ion-card-subtitle>Current Schools with Cases</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        Current School Closed: <ion-text color="danger"><strong>{{item.current_schools_closed}}</strong></ion-text>
+      </ion-item>
+      <ion-item>
+        Current Total Number Schools: <strong>{{item.current_total_number_schools}}</strong>
+      </ion-item>
+      <ion-item>
+        Cumulative School Related Cases: <strong>{{item.cumulative_school_related_cases}}</strong>
+      </ion-item>
+      <ion-item>
+        Cumulative School Related Student Cases: <strong>{{item.cumulative_school_related_student_cases}}</strong>
+      </ion-item>
+      <ion-item>
+        Cumulative School Related Staff Cases: <strong>{{item.cumulative_school_related_staff_cases}}</strong>
+      </ion-item>
+      <ion-item>
+        Cumulative School Related Unspecified Cases: <strong>{{item.cumulative_school_related_unspecified_cases}}</strong>
+      </ion-item>
+      <ion-text>{{item.reported_date}}</ion-text>
+    </ion-card-content>
+  </ion-card>
+  <ion-button color="secondary" (click)="displaySchoolCovidTesting()">School targeted testing summary</ion-button>
+  <ion-card *ngFor="let item of schoolCovidTesting">
+    <ion-card-header>
+      <ion-card-subtitle>{{item.date}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngFor="let sect of item.value">
+        <ion-text>{{sect.name}}</ion-text><br>
+        <ion-text color="danger">
+          <strong>{{sect.value}}</strong>
+        </ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-button color="tertiary" (click)="displaySchoolPartnersActiveCovid()">Case in school board partners</ion-button>
+  <ion-card *ngFor="let item of schoolPartnersActiveCovid">
+    <ion-card-header>
+      <ion-card-subtitle>{{item.date}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngFor="let sect of item.value">
+        <ion-text>{{sect.name}}</ion-text><br>
+        <ion-text color="danger">
+          <strong>{{sect.value}}</strong>
+        </ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
